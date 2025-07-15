@@ -2,9 +2,11 @@ import { Request, Response } from "express";
 import { prisma } from "../../libs/prisma";
 import ResponseError from "../../errors/response-error";
 
-const getAllUsers = async (req: Request, res: Response) => {
+const getUserById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
+    console.log("Fetching user with ID:", id);
+
     const user = await prisma.user.findUnique({
       select: {
         id: true,
@@ -12,7 +14,7 @@ const getAllUsers = async (req: Request, res: Response) => {
         email: true,
         createdAt: true,
       },
-      where: { id: id ? Number(id) : undefined },
+      where: { id: Number(id) },
     });
 
     if (!user) {
@@ -28,4 +30,4 @@ const getAllUsers = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-export default getAllUsers;
+export default getUserById;
