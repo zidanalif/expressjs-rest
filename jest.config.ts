@@ -4,8 +4,9 @@ const config: Config = {
   preset: "ts-jest",
   testEnvironment: "node",
   roots: ["<rootDir>/src"],
-  testMatch: ["**/*.test.ts"], // match inline test files
+  testMatch: ["**/*.test.ts"],
   moduleFileExtensions: ["ts", "js"],
+  setupFilesAfterEnv: ["<rootDir>/src/mock/prisma-mock.ts"],
 };
 
 export default config;

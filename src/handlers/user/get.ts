@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { prisma } from "../../libs/prisma";
+import prisma from "../../libs/prisma";
 
 const getAllUsers = async (req: Request, res: Response) => {
   try {
@@ -17,4 +17,5 @@ const getAllUsers = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
 export default getAllUsers;
